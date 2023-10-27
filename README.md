@@ -25,7 +25,7 @@ Once the user clicks on the button, the application contacts the API of the exte
 - Install the project dependencies (you can find them in the requirements.txt file): 
 
 ```bash
-    npm install webpack webpack-cli webpack-dev-server style-loader html-webpack-plugin gh-pages dotenv-webpack css-loader -D
+    npm install webpack webpack-cli webpack-dev-server style-loader html-webpack-plugin gh-pages dotenv-webpack css-loader axios -D
 ```
 
 - Create the `.env` file and enter the OpenLibrary url (.env_example)
