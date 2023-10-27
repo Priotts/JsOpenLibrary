@@ -9,7 +9,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/bundle.js',
-        assetModuleFilename: 'images/[name][ext]'
+        assetModuleFilename: 'assets/images/[name][ext]'
     },
     module: {
         rules: [
