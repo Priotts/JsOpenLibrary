@@ -2,6 +2,8 @@ import '../css/styles.css'
 import '../assets/images/arrow.svg'
 import '../assets/images/loader.svg'
 
+import axios from 'axios'
+
 //VARIABLE 
 let showP = document.getElementById('show-paragraph');
 let info = document.getElementById('info');
@@ -63,11 +65,11 @@ async function getData(url) {
             return;
         }
         // Fetches data from Open Library API
-        let response = await fetch(`${url}/subjects/${(input.value).toLowerCase()}.json?&limit=${postPerPage}&offset=${offset}`);
+        let response = await axios.get(`${url}/subjects/${(input.value).toLowerCase()}.json?&limit=${postPerPage}&offset=${offset}`);
         // Checks if request was successful
-        if (response.ok) {
+        if (response.status === 200) {
             // JSON response
-            let data = await response.json()
+            let data = response.data
             const works = data.works
             // Checks if there are any works
             if (works.length > 0) {
@@ -114,8 +116,9 @@ async function createDescription(books) {
             return;
         }
         await Promise.all(books.map(async book => {
-            let response = await fetch(`${baseURL}${book.key}.json`);
-            let data = await response.json();
+            let response = await axios.get(`${baseURL}${book.key}.json`);
+            let data =  response.data;
+ 
             if (typeof data.description === 'string') {
                 book.description = data.description;
             } else if (typeof data.description === 'object') {
